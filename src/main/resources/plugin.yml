@@ -1,0 +1,5 @@
+name: Uhc
+version: '${version}'
+main: net.rennvo.uhc.UhcPlugin
+authors: [ renNvo ]
+website: github.com/renNvo
