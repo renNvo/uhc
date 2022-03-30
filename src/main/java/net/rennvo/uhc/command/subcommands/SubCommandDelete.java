@@ -36,4 +36,9 @@ public class SubCommandDelete implements SubCommand {
     public int arguments() {
         return 1;
     }
+
+    @Override
+    public String permission() {
+        return "uhc.delete";
+    }
 }

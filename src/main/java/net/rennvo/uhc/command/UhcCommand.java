@@ -1,6 +1,12 @@
 package net.rennvo.uhc.command;
 
 import com.google.common.collect.Maps;
+import net.rennvo.uhc.command.subcommands.SubCommandCreate;
+import net.rennvo.uhc.command.subcommands.SubCommandDelete;
+import net.rennvo.uhc.command.subcommands.SubCommandJoin;
+import net.rennvo.uhc.command.subcommands.SubCommandLeave;
+import net.rennvo.uhc.service.ArenaManager;
+import net.rennvo.uhc.service.UserManager;
 import org.bukkit.entity.Player;
 
 import java.util.Arrays;
@@ -10,8 +16,12 @@ public class UhcCommand extends AbstractCommand {
 
     private final Map<String, SubCommand> subCommandMap = Maps.newConcurrentMap();
 
-    public UhcCommand() {
-
+    public UhcCommand(ArenaManager arenaManager, UserManager userManager) {
+        this.subCommandMap.put("create", new SubCommandCreate(arenaManager));
+        this.subCommandMap.put("delete", new SubCommandDelete(arenaManager));
+        this.subCommandMap.put("join", new SubCommandJoin(arenaManager, userManager));
+        this.subCommandMap.put("leave", new SubCommandLeave(userManager));
+        this.subCommandMap.put("toggle", new SubCommandCreate(arenaManager));
     }
 
     @Override
@@ -26,6 +36,10 @@ public class UhcCommand extends AbstractCommand {
         if(subCommand == null) {
             player.sendMessage("[usage]");
             return;
+        }
+
+        if(!subCommand.permission().isEmpty() || !player.hasPermission(subCommand.permission())) {
+            player.sendMessage("You don't have permission for that");
         }
 
         if(subCommand.arguments() >= args.length) {

@@ -34,4 +34,9 @@ public class SubCommandJoin implements SubCommand {
     public int arguments() {
         return 1;
     }
+
+    @Override
+    public String permission() {
+        return "";
+    }
 }

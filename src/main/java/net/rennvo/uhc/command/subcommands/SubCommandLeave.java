@@ -9,11 +9,9 @@ import org.bukkit.entity.Player;
 
 public class SubCommandLeave implements SubCommand {
 
-    private final ArenaManager arenaManager;
     private final UserManager userManager;
 
-    public SubCommandLeave(ArenaManager arenaManager, UserManager userManager) {
-        this.arenaManager = arenaManager;
+    public SubCommandLeave(UserManager userManager) {
         this.userManager  = userManager;
     }
 
@@ -42,5 +40,10 @@ public class SubCommandLeave implements SubCommand {
     @Override
     public int arguments() {
         return 0;
+    }
+
+    @Override
+    public String permission() {
+        return "";
     }
 }
