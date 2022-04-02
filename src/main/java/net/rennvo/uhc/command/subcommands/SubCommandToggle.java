@@ -32,8 +32,10 @@ public class SubCommandToggle implements SubCommand {
 
         if(arena.isEnabled()) {
             player.sendMessage("Successfully u enabled arena " + name);
+            arena.getSign().setLine(2, "Enabled");
         } else {
             player.sendMessage("Successfully u disabled arena " + name);
+            arena.getSign().setLine(3, "Disabled");
         }
     }
 

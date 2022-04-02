@@ -10,30 +10,31 @@ import org.bukkit.plugin.Plugin;
 
 public class ArenaService {
 
-    public static void join(Plugin plugin, Player player, IUser user, IArena arena) {
+    public static boolean join(Plugin plugin, Player player, IUser user, IArena arena) {
 
         if(user.getArena() != null) {
             player.sendMessage("You have to leave/end ur current arena");
-            return;
+            return false;
         }
 
         if(!arena.isEnabled()) {
             player.sendMessage("This arena is disabled.");
-            return;
+            return false;
         }
 
         if(arena.isActive()) {
             player.sendMessage("This arena is active.");
-            return;
+            return false;
         }
 
         if(arena.getParticipatingList().size() == 9) {
             player.sendMessage("This arena is full.");
-            return;
+            return false;
         }
 
         user.setArena(arena);
         arena.getParticipatingList().add(user);
+        arena.getSign().setLine(3, arena.getParticipatingList().size() + "/9");
 
         PlayerUtilities.sendMessageToArena(arena, "Player " + player.getName() + " joined (" + arena.getParticipatingList().size() + "/9)");
 
@@ -52,9 +53,13 @@ public class ArenaService {
                 Bukkit.getScheduler().runTaskTimer(plugin, timer, 20L, 20L);
             }
         }
+
+        return true;
     }
 
     public static void leave(String name, IArena arena) {
+        arena.getSign().setLine(3, arena.getParticipatingList().size() + "/9");
+
         ArenaTimer timer = arena.getTimer();
 
         if(arena.getParticipatingList().size() < 3) {

@@ -3,7 +3,6 @@ package net.rennvo.uhc.command.subcommands;
 import net.rennvo.uhc.command.SubCommand;
 import net.rennvo.uhc.model.arena.IArena;
 import net.rennvo.uhc.model.user.IUser;
-import net.rennvo.uhc.service.ArenaManager;
 import net.rennvo.uhc.service.ArenaService;
 import net.rennvo.uhc.service.UserManager;
 import org.bukkit.entity.Player;
@@ -32,7 +31,7 @@ public class SubCommandLeave implements SubCommand {
             return;
         }
 
-        arena.getParticipatingList().remove(user.getUniqueId());
+        arena.getParticipatingList().remove(user);
         user.setArena(null);
 
         player.sendMessage("You left '" + arena.getName() + "' arena");

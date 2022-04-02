@@ -18,7 +18,6 @@ public class PlayerJoinListener implements Listener {
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
         final Player player = event.getPlayer();
-
         userManager.getUserMap().put(player.getUniqueId(), new UserImpl(player.getUniqueId()));
     }
 }

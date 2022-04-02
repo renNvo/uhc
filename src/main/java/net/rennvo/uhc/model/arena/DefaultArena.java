@@ -2,6 +2,7 @@ package net.rennvo.uhc.model.arena;
 
 import net.rennvo.uhc.model.user.IUser;
 import org.bukkit.World;
+import org.bukkit.block.Sign;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,8 +14,9 @@ public class DefaultArena implements IArena {
     private final World   world;
     private       boolean enabled;
 
-    private       ArenaTimer timer;
-    private       boolean    activity;
+    private       Sign        sign;
+    private       ArenaTimer  timer;
+    private       boolean     activity;
     private final List<IUser> participatingList;
 
     public DefaultArena(String name, World world, boolean isEnabled) {
@@ -69,5 +71,15 @@ public class DefaultArena implements IArena {
     @Override
     public void setTimer(ArenaTimer timer) {
         this.timer = timer;
+    }
+
+    @Override
+    public Sign getSign() {
+        return sign;
+    }
+
+    @Override
+    public void setSign(Sign sign) {
+        this.sign = sign;
     }
 }

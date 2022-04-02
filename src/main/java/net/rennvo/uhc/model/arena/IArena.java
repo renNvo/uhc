@@ -2,6 +2,8 @@ package net.rennvo.uhc.model.arena;
 
 import net.rennvo.uhc.model.user.IUser;
 import org.bukkit.World;
+import org.bukkit.block.Block;
+import org.bukkit.block.Sign;
 
 import java.util.List;
 import java.util.UUID;
@@ -25,4 +27,8 @@ public interface IArena {
     public void setTimer(ArenaTimer timer);
 
     public List<IUser> getParticipatingList();
+
+    public Sign getSign();
+
+    public void setSign(Sign sign);
 }

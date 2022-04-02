@@ -25,7 +25,7 @@ public class PlayerQuitListener implements Listener {
         if(user.getArena() != null) {
             IArena arena = user.getArena();
 
-            arena.getParticipatingList().remove(user.getUniqueId());
+            arena.getParticipatingList().remove(user);
 
             if(arena.isActive()) {
                 //TODO winner condition
