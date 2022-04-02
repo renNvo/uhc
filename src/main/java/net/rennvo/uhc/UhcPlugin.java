@@ -15,7 +15,7 @@ public final class UhcPlugin extends JavaPlugin {
         this.arenaManager = new ArenaManager();
         this.userManager = new UserManager();
 
-        this.getCommand("uhc").setExecutor(new UhcCommand(arenaManager, userManager));
+        this.getCommand("uhc").setExecutor(new UhcCommand(this, arenaManager, userManager));
     }
 
     @Override

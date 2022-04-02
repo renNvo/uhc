@@ -1,5 +1,6 @@
 package net.rennvo.uhc.model.arena;
 
+import net.rennvo.uhc.model.user.IUser;
 import org.bukkit.World;
 
 import java.util.ArrayList;
@@ -12,13 +13,15 @@ public class DefaultArena implements IArena {
     private final World   world;
     private       boolean enabled;
 
+    private       ArenaTimer timer;
     private       boolean    activity;
-    private final List<UUID> participatingList;
+    private final List<IUser> participatingList;
 
     public DefaultArena(String name, World world, boolean isEnabled) {
         this.name              = name;
         this.world             = world;
         this.enabled           = isEnabled;
+        this.timer             = new ArenaTimer(this);
         this.activity          = false;
         this.participatingList = new ArrayList<>();
     }
@@ -54,7 +57,17 @@ public class DefaultArena implements IArena {
     }
 
     @Override
-    public List<UUID> getParticipatingList() {
+    public List<IUser> getParticipatingList() {
         return participatingList;
+    }
+
+    @Override
+    public ArenaTimer getTimer() {
+        return timer;
+    }
+
+    @Override
+    public void setTimer(ArenaTimer timer) {
+        this.timer = timer;
     }
 }

@@ -6,13 +6,16 @@ import net.rennvo.uhc.service.ArenaManager;
 import net.rennvo.uhc.service.ArenaService;
 import net.rennvo.uhc.service.UserManager;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.Plugin;
 
 public class SubCommandJoin implements SubCommand {
 
+    private final Plugin       plugin;
     private final ArenaManager arenaManager;
-    private final UserManager userManager;
+    private final UserManager  userManager;
 
-    public SubCommandJoin(ArenaManager arenaManager, UserManager userManager) {
+    public SubCommandJoin(Plugin plugin, ArenaManager arenaManager, UserManager userManager) {
+        this.plugin       = plugin;
         this.arenaManager = arenaManager;
         this.userManager  = userManager;
     }
@@ -22,12 +25,12 @@ public class SubCommandJoin implements SubCommand {
         String name  = args[0];
         IArena arena = arenaManager.get(name);
 
-        if(arena == null) {
+        if (arena == null) {
             player.sendMessage("This arena doesn't exists");
             return;
         }
 
-        ArenaService.join(player, userManager.get(player.getUniqueId()), arena);
+        ArenaService.join(plugin, player, userManager.get(player.getUniqueId()), arena);
     }
 
     @Override
