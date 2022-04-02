@@ -1,6 +1,7 @@
 package net.rennvo.uhc;
 
 import net.rennvo.uhc.command.UhcCommand;
+import net.rennvo.uhc.listener.PlayerInteractListener;
 import net.rennvo.uhc.listener.PlayerJoinListener;
 import net.rennvo.uhc.listener.PlayerQuitListener;
 import net.rennvo.uhc.listener.SignChangeListener;
@@ -25,6 +26,7 @@ public final class UhcPlugin extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new PlayerJoinListener(userManager), this);
         Bukkit.getPluginManager().registerEvents(new PlayerQuitListener(userManager), this);
         Bukkit.getPluginManager().registerEvents(new SignChangeListener(arenaManager), this);
+        Bukkit.getPluginManager().registerEvents(new PlayerInteractListener(this, arenaManager, userManager), this);
 
         Bukkit.getOnlinePlayers().stream()
                 .map(player -> new UserImpl(player.getUniqueId()))
