@@ -1,10 +1,7 @@
 package net.rennvo.uhc.command;
 
 import com.google.common.collect.Maps;
-import net.rennvo.uhc.command.subcommands.SubCommandCreate;
-import net.rennvo.uhc.command.subcommands.SubCommandDelete;
-import net.rennvo.uhc.command.subcommands.SubCommandJoin;
-import net.rennvo.uhc.command.subcommands.SubCommandLeave;
+import net.rennvo.uhc.command.subcommands.*;
 import net.rennvo.uhc.service.ArenaManager;
 import net.rennvo.uhc.service.UserManager;
 import org.bukkit.entity.Player;
@@ -23,6 +20,7 @@ public class UhcCommand extends AbstractCommand {
         this.subCommandMap.put("join", new SubCommandJoin(plugin, arenaManager, userManager));
         this.subCommandMap.put("leave", new SubCommandLeave(userManager));
         this.subCommandMap.put("toggle", new SubCommandCreate(arenaManager));
+        this.subCommandMap.put("kick", new SubCommandKick(userManager));
     }
 
     @Override
