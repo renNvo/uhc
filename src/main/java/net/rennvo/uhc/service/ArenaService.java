@@ -67,6 +67,5 @@ public class ArenaService {
         }
 
         PlayerUtilities.sendMessageToArena(arena, "Player " + name + " leaved (" + arena.getParticipatingList().size() + "/9)");
-
     }
 }
